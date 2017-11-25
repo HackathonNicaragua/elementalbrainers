@@ -231,5 +231,7 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/ruby,macos,rails,windows,rubymine
 
-.idea
-.idea/*
+*.idea
+*.idea/*
+/.idea
+/.idea/*
