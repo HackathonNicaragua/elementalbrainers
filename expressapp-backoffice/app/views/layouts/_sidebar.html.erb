@@ -1,0 +1,17 @@
+<div class="sidebar" data-color="purple" data-image="#">
+  <div class="sidebar-wrapper">
+    <div class="logo">
+      <%= link_to root_path, :class => 'simple-text' do %>
+          <%= t('project_title').upcase %>
+      <% end %>
+    </div>
+    <ul class="nav">
+      <li class="<%= active_controller('home') %>">
+        <%= link_to root_path do %>
+            <i class="pe-7s-home"></i>
+            <p><%= t('sidebar.home') %></p>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

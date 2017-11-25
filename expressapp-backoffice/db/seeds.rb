@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# root user
+user = User.new(
+    email: 'admin@expresapp.com',
+    password: 'xZyXHPX6CD',
+    password_confirmation: 'xZyXHPX6CD',
+    role: 0
+)
+user.save!

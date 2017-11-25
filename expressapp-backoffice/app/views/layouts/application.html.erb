@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ExpressappBackoffice</title>
+    <title><%= t('project_title') %> | <%= yield(:title).strip %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= favicon_link_tag %>
   </head>
 
   <body>
+    <div class="wrapper">
+      <%= render 'layouts/sidebar' %>
+    </div>
     <%= yield %>
   </body>
 </html>
