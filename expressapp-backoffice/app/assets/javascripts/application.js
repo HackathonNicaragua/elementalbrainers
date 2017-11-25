@@ -13,4 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require template/bootstrap.min
+//= require template/bootstrap-checkbox-radio-switch
+//= require template/bootstrap-notify
+//= require template/bootstrap-select
+//= require template/chartist.min
+//= require template/light-bootstrap-dashboard
+//= require template/demo
+
+document.addEventListener('turbolinks:load', function () {});

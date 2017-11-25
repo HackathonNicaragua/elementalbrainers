@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t('project_title') %> | <%= t('modules.sessions.login.title') %></title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <%= favicon_link_tag %>
+</head>
+
+<body style>
+
+<div class="content" style="margin-top: 5%">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <div class="card">
+          <div class="header">
+            <h4 class="title"><%= t('modules.sessions.login.title') %></h4>
+          </div>
+          <div class="content">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="form-group">
+                  <%= f.label :email do %>
+                      <%= t('activerecord.attributes.user.email') %>
+                  <% end %><br />
+                  <%= f.email_field :email, :class => 'form-control', autofocus: true %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :password do %>
+                      <%= t('activerecord.attributes.user.password') %>
+                  <% end %><br />
+                  <%= f.password_field :password, :class => 'form-control', autocomplete: "off" %>
+                </div>
+
+                <% if devise_mapping.rememberable? -%>
+                    <div class="form-group">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me do %>
+                          <%= t('activerecord.attributes.user.remember_me') %>
+                      <% end %>
+                    </div>
+                <% end -%>
+
+                <div class="form-group" hidden>
+                  <%= render "devise/shared/links" %>
+                </div>
+
+                <%= button_tag :type => 'submit', :class => 'btn btn-info btn-fill pull-right' do %>
+                    <%= t('modules.sessions.login.button') %>
+                <% end %>
+
+                <div class="clearfix"></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

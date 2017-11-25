@@ -10,6 +10,12 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+ *= require template/bootstrap.min
+ *= require template/animate.min
+ *= require template/light-bootstrap-dashboard
+ *= require template/demo
+ *= require template/pe-icon-7-stroke
  */
+
+// Custom functions - leave last
+@import "masti_card";
