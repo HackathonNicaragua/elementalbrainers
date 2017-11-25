@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ExpressApp</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_traductor">TraductorActivity</string>
 </resources>

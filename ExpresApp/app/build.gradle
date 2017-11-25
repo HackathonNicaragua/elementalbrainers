@@ -19,12 +19,26 @@ android {
     }
 }
 
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    compile(group: 'com.tumblr', name: 'remember', version: '1.0.0', ext: 'aar')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.stephentuso:welcome:1.4.1'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
     testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

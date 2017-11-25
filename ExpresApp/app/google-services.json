@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1029206334038",
+    "firebase_url": "https://expresapp-40a1b.firebaseio.com",
+    "project_id": "expresapp-40a1b",
+    "storage_bucket": "expresapp-40a1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029206334038:android:16fbff87a5385cdb",
+        "android_client_info": {
+          "package_name": "com.elementalbraines.expressapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1029206334038-ho50nq55plapjhn8d3ncvarf4aa438c4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elementalbraines.expressapp",
+            "certificate_hash": "b1a58f06c5a8e6f5a25fc17ac819eb62e86517e4"
+          }
+        },
+        {
+          "client_id": "1029206334038-qi73mmugqcjkoovcjle8u045dj32cifh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFzbJ91EJjjNoJyTtkyk8-EyaelOIHkNU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1029206334038-qi73mmugqcjkoovcjle8u045dj32cifh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
