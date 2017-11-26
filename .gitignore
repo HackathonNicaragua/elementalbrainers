@@ -236,7 +236,7 @@ $RECYCLE.BIN/
 /.idea
 /.idea/*
 
-expressapp-backoffice/public/images
-/expressapp-backoffice/public/images
-expressapp-backoffice/public/images/*
-/expressapp-backoffice/public/miages/*
+expressapp-backoffice/public
+/expressapp-backoffice/public
+expressapp-backoffice/public/*
+/expressapp-backoffice/public/*
