@@ -12,4 +12,21 @@
  *
  *= require_tree .
  *= require_self
+ *= require template/contact-form-style
+ *= require template/booom-bootstrap.min
+ *= require template/flat-ui-pro
+ *= require template/booom-custom
+ *= require template/booom-style
+ *= require template/booom-related-posts
+ *= require template/booom-woo-commerce
+ *= require template/instag-slider
+ *= require template/js-composer.min
+ *= require template/form-basic
+ *= require template/jetpack
  */
+
+@media (min-width: 1200px){
+    .container {
+        width: 1170px;
+    }
+}

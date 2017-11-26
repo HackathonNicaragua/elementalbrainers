@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require template/jquery-migrate.min
+//= require template/jquery-flexslider
 //= require turbolinks
 //= require_tree .
