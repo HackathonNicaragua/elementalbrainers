@@ -15,6 +15,8 @@ class Phrase < ApplicationRecord
   validates :frase, presence: true
   validates :imagen, presence: true
 
+  scope :actives, -> { where(active: true) }
+
   # carrierwave helper
   mount_uploader :imagen, ImagenUploader
 end
