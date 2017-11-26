@@ -100,6 +100,8 @@ public class TraductorActivity extends AppCompatActivity {
         lista.put("favor", "favor");
         lista.put("nombre", "nombre");
         lista.put("cuándo", "cuando");
+        lista.put("cuál", "cual");
+        lista.put("cual", "cual");
         lista.put("1", "uno");
         lista.put("2", "dos");
         lista.put("3", "tres");
