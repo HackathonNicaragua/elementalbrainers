@@ -46,7 +46,7 @@ public class WelcomeAppActivity extends WelcomeActivity {
     }
 
     private void showMenuActivity(){
-        Intent i = new Intent(this, MenuActivity.class);
+        Intent i = new Intent(this, TraductorActivity.class);
         startActivity(i);
     }
 }

@@ -22,7 +22,7 @@
             android:layout_centerInParent="true"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/gif_splash"/>
+            android:src="@drawable/inicio"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

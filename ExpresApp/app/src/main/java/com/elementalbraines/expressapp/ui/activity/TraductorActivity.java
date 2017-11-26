@@ -56,6 +56,10 @@ public class TraductorActivity extends AppCompatActivity {
 
         lista = new HashMap<String, String>();
         lista.put("hola", "hola");
+        lista.put("estás", "como_estas");
+        lista.put("gracias", "gracias");
+        lista.put("gracia", "gracias");
+        lista.put("bien", "bien");
         lista.put("1", "uno");
         lista.put("2", "dos");
         lista.put("3", "tres");
@@ -65,6 +69,7 @@ public class TraductorActivity extends AppCompatActivity {
         lista.put("7", "siete");
         lista.put("8", "ocho");
         lista.put("9", "nueve");
+        lista.put("10", "diez");
 
         gifInterprete = (GifImageView) findViewById(R.id.gifInterprete);
 
@@ -99,23 +104,26 @@ public class TraductorActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_MICROFONO) {
 
-
-            ArrayList<String> values = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            if(resultCode == RESULT_OK){
-                String[] frases = values.get(0).split(" ");
-                List<String> animaciones = new ArrayList<String>();
-                for (String frase : frases){
-                    if(lista.containsKey(frase.toLowerCase())){
-                        animaciones.add(lista.get(frase.toLowerCase()));
+            if(RESULT_OK == resultCode) {
+                ArrayList<String> values = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                if (resultCode == RESULT_OK) {
+                    String[] frases = values.get(0).split(" ");
+                    List<String> animaciones = new ArrayList<String>();
+                    for (String frase : frases) {
+                        if (lista.containsKey(frase.toLowerCase())) {
+                            animaciones.add(lista.get(frase.toLowerCase()));
+                        }
                     }
-                }
-                count = 0;
-                if(animaciones.size()>0)
-                    createAnimation(animaciones);
-                else
-                    Toast.makeText(getApplicationContext(), "No hay resultados", Toast.LENGTH_LONG);
+                    count = 0;
+                    if (animaciones.size() > 0)
+                        createAnimation(animaciones);
+                    else
+                        Toast.makeText(getApplicationContext(), "No hay resultados", Toast.LENGTH_LONG);
 
-                Toast.makeText(getApplicationContext(), values.get(0), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), values.get(0), Toast.LENGTH_LONG).show();
+                }
+            }else{
+                Snackbar.make(cntInterprete, "Petición Cancelada", Snackbar.LENGTH_LONG).show();
             }
 
             //gifInterprete.setBackgroundResource(R.drawable.tres);
@@ -141,19 +149,19 @@ public class TraductorActivity extends AppCompatActivity {
 
     int count = 0;
     public void createAnimation(final List<String> frases) {
+        cntInterprete.removeAllViews();
         if (count < frases.size()) {
             GifImageView gifImageView = new GifImageView(getApplicationContext());
             String animation = frases.get(count).toLowerCase();
             gifImageView.setImageResource(getResources().getIdentifier(animation, "drawable", getPackageName()));
-            GifDrawable gifDrawable = (GifDrawable) gifImageView.getDrawable();
+            final GifDrawable gifDrawable = (GifDrawable) gifImageView.getDrawable();
             if(gifDrawable != null) {
                 gifDrawable.addAnimationListener(new AnimationListener() {
                     @Override
                     public void onAnimationCompleted(int loopNumber) {
-
-                        cntInterprete.removeAllViews();
-                        createAnimation(frases);
                         count++;
+                        createAnimation(frases);
+
 
                     }
                 });
@@ -162,7 +170,11 @@ public class TraductorActivity extends AppCompatActivity {
                 cntInterprete.addView(gifImageView);
                 gifDrawable.start();
             }
-            
+
+        }else{
+            GifImageView gifImageView = new GifImageView(getApplicationContext());
+            gifImageView.setImageResource(getResources().getIdentifier("inicio", "drawable", getPackageName()));;
+            cntInterprete.addView(gifImageView);
         }
     }
 

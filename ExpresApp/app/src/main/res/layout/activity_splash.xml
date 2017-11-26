@@ -7,25 +7,11 @@
     android:background="@color/colorPrimary"
     tools:context="com.elementalbraines.expressapp.ui.activity.SplashActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifSplash"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
-        <pl.droidsonroids.gif.GifTextView
-            android:id="@+id/gifSplash"
-            android:layout_width="260dp"
-            android:layout_height="260dp"
-            android:background="@drawable/gif_splash"/>
-
-        <Button
-            android:id="@+id/btnWelcome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Wellcome"
-            android:layout_centerInParent="true"/>
-    </LinearLayout>
-
-
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gif_splash"/>
 
 </RelativeLayout>

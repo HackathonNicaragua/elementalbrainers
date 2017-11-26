@@ -3,4 +3,6 @@
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_traductor">TraductorActivity</string>
     <string name="title_activity_chat">ChatActivity</string>
+    <string name="facebook_app_id">317456708736171</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>
