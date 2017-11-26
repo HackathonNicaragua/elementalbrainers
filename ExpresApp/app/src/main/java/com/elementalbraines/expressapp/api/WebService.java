@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WebService {
 
-    private final static String URL = "172.20.9.45:3000/api/";
+    private final static String URL = "http://172.20.9.45:3000/api/";
 
 
     public static WebServiceInterface instance() {

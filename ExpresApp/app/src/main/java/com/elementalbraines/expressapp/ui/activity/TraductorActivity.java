@@ -3,6 +3,7 @@ package com.elementalbraines.expressapp.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
@@ -11,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,9 +28,12 @@ import android.widget.Toast;
 
 import com.elementalbraines.expressapp.R;
 import com.elementalbraines.expressapp.Util;
+import com.elementalbraines.expressapp.api.Frases;
+import com.elementalbraines.expressapp.models.FraseModel;
 import com.tumblr.remember.Remember;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +48,9 @@ import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 import pl.droidsonroids.gif.GifTextView;
 import pl.droidsonroids.gif.MultiCallback;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TraductorActivity extends AppCompatActivity {
 
@@ -83,6 +91,15 @@ public class TraductorActivity extends AppCompatActivity {
         lista.put("gracias", "gracias");
         lista.put("gracia", "gracias");
         lista.put("bien", "bien");
+        lista.put("calor", "calor");
+        lista.put("mi", "mi");
+        lista.put("yo", "yo");
+        lista.put("cual", "cual");
+        lista.put("porque", "porque");
+        lista.put("pensar", "pensar");
+        lista.put("favor", "favor");
+        lista.put("nombre", "nombre");
+        lista.put("cuándo", "cuando");
         lista.put("1", "uno");
         lista.put("2", "dos");
         lista.put("3", "tres");
@@ -170,8 +187,8 @@ public class TraductorActivity extends AppCompatActivity {
             if(RESULT_OK == resultCode) {
                 ArrayList<String> values = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                 if (resultCode == RESULT_OK) {
-                    String[] frases = values.get(0).split(" ");
                     List<String> animaciones = new ArrayList<String>();
+                    String[] frases = values.get(0).split(" ");
                     for (String frase : frases) {
                         if (lista.containsKey(frase.toLowerCase())) {
                             animaciones.add(lista.get(frase.toLowerCase()));

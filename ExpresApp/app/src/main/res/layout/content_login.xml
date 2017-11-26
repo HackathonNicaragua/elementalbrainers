@@ -26,12 +26,13 @@
             android:text="  connect_with_facebook" />
 
         <Button
+            android:id="@+id/btnCrearSala"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="15dp"
             android:layout_gravity="center"
             android:textColor="#FFF"
-            android:enabled="false"
+            android:visibility="gone"
             android:text="Crear Sala"
             android:backgroundTint="@color/rosa_claro"/>
 
@@ -41,7 +42,7 @@
             android:layout_gravity="center"
             android:padding="15dp"
             android:textColor="#FFF"
-            android:enabled="false"
+            android:visibility="gone"
             android:text="Unirse a Sala"
             android:backgroundTint="@color/colorPrimary"/>
 

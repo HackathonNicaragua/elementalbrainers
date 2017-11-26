@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import com.elementalbraines.expressapp.R;
 import com.elementalbraines.expressapp.Util;
+import com.elementalbraines.expressapp.api.Frases;
+import com.elementalbraines.expressapp.api.WebService;
+import com.elementalbraines.expressapp.models.FraseModel;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -30,9 +33,16 @@ import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -103,6 +113,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onError(FacebookException e) {
             }
         });
+    }
+
+    @OnClick(R.id.btnCrearSala)
+    void OnClickAddSala(View view){
+        WebService.instance();
+
     }
 
     @Override
