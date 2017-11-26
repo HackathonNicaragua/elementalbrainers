@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.elementalbraines.expressapp.R;
 import com.elementalbraines.expressapp.Util;
-import com.elementalbraines.expressapp.models.Chat;
+import com.elementalbraines.expressapp.models.ChatModel;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.tumblr.remember.Remember;
 
@@ -25,20 +25,20 @@ import butterknife.ButterKnife;
 
 public class ChatAdapter  extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder>{
 
-    List<Chat> chatList;
+    List<ChatModel> chatModelList;
     Context context;
     private static final int CHAT_SEND = 60;
     private static final int CHAT_RECEIVED = 61;
 
 
-    public ChatAdapter(Context context, List<Chat> chats){
+    public ChatAdapter(Context context, List<ChatModel> chatModels){
         this.context = context;
-        this.chatList = chats;
+        this.chatModelList = chatModels;
 
     }
 
-    public void addChat(Chat chat){
-        this.chatList.add(chat);
+    public void addChat(ChatModel chatModel){
+        this.chatModelList.add(chatModel);
         notifyDataSetChanged();
     }
 
@@ -58,7 +58,7 @@ public class ChatAdapter  extends RecyclerView.Adapter<ChatAdapter.ChatViewHolde
     @Override
     public int getItemViewType(int position) {
 
-        if(chatList.get(position).getUser_id().equals(Remember.getString(Util.USER_ID,"")))
+        if(chatModelList.get(position).getUser_id().equals(Remember.getString(Util.USER_ID,"")))
             return CHAT_SEND;
         else
             return CHAT_RECEIVED;
@@ -67,10 +67,10 @@ public class ChatAdapter  extends RecyclerView.Adapter<ChatAdapter.ChatViewHolde
 
     @Override
     public void onBindViewHolder(ChatViewHolder holder, int position) {
-        Chat chat = chatList.get(position);
-        Uri uri = Uri.parse(chat.getImage());
-        holder.txvChat.setText(chat.getMensaje());
-        holder.txvChatName.setText(chat.getNombre());
+        ChatModel chatModel = chatModelList.get(position);
+        Uri uri = Uri.parse(chatModel.getImage());
+        holder.txvChat.setText(chatModel.getMensaje());
+        holder.txvChatName.setText(chatModel.getNombre());
         if(holder.sdvChatImg != null)
             holder.sdvChatImg.setImageURI(uri);
 
@@ -78,7 +78,7 @@ public class ChatAdapter  extends RecyclerView.Adapter<ChatAdapter.ChatViewHolde
 
     @Override
     public int getItemCount() {
-        return chatList.size();
+        return chatModelList.size();
     }
 
     public class ChatViewHolder extends RecyclerView.ViewHolder{

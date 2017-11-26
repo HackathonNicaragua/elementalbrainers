@@ -8,15 +8,43 @@
     tools:context="com.elementalbraines.expressapp.ui.activity.LoginActivity"
     tools:showIn="@layout/activity_login">
 
-    <com.facebook.login.widget.LoginButton
-        android:layout_marginTop="30dp"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp"
-        android:id="@+id/btnLoginFB"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/FacebookLoginButton"
-        android:text="  connect_with_facebook" />
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <com.facebook.login.widget.LoginButton
+            android:layout_marginTop="30dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:id="@+id/btnLoginFB"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/FacebookLoginButton"
+            android:text="  connect_with_facebook" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_gravity="center"
+            android:textColor="#FFF"
+            android:enabled="false"
+            android:text="Crear Sala"
+            android:backgroundTint="@color/rosa_claro"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:textColor="#FFF"
+            android:enabled="false"
+            android:text="Unirse a Sala"
+            android:backgroundTint="@color/colorPrimary"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

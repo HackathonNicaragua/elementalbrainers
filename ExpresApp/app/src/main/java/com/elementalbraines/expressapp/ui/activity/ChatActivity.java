@@ -1,9 +1,6 @@
 package com.elementalbraines.expressapp.ui.activity;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -14,34 +11,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.elementalbraines.expressapp.R;
 import com.elementalbraines.expressapp.Util;
-import com.elementalbraines.expressapp.models.Chat;
+import com.elementalbraines.expressapp.models.ChatModel;
 import com.elementalbraines.expressapp.ui.adapters.ChatAdapter;
-import com.facebook.login.Login;
-import com.facebook.login.LoginManager;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.tumblr.remember.Remember;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -74,7 +60,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Chat");
+        toolbar.setTitle("ChatModel");
         toolbar.setNavigationIcon(R.drawable.ic_logo);
 
         Remember.init(getApplicationContext(), "com.elementalbraines.expressapp");
@@ -87,10 +73,10 @@ public class ChatActivity extends AppCompatActivity {
         dbChat = FirebaseDatabase.getInstance().getReference()
                 .child("salas").child("sala1");
 
-        List<Chat> chatList = new ArrayList<Chat>();
+        List<ChatModel> chatModelList = new ArrayList<ChatModel>();
 
 
-        adapter = new ChatAdapter(getApplicationContext(), chatList);
+        adapter = new ChatAdapter(getApplicationContext(), chatModelList);
         rcvChat.setAdapter(adapter);
         rcvChat.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         //rcvChat.setHasFixedSize(true);
@@ -185,8 +171,8 @@ public class ChatActivity extends AppCompatActivity {
         String user_name = Remember.getString(Util.USER_NAME,"Anonymo");
         String user_picture = Remember.getString(Util.USER_PICTURE,"Anonymo");
 
-        Chat chat = new Chat(user_id, user_name, mensaje, user_picture);
-        dbChat.child(java.util.UUID.randomUUID().toString()).setValue(chat);
+        ChatModel chatModel = new ChatModel(user_id, user_name, mensaje, user_picture);
+        dbChat.child(java.util.UUID.randomUUID().toString()).setValue(chatModel);
     }
 
     public void loadMensaje(){
@@ -198,7 +184,7 @@ public class ChatActivity extends AppCompatActivity {
                 String nombre = dataSnapshot.child("nombre").getValue().toString();
                 String mensaje = dataSnapshot.child("mensaje").getValue().toString();
                 String picture = dataSnapshot.child("image").getValue().toString();
-                adapter.addChat(new Chat(token, nombre, mensaje, picture));
+                adapter.addChat(new ChatModel(token, nombre, mensaje, picture));
             }
 
             @Override

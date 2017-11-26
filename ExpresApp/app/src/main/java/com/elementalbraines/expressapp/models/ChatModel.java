@@ -4,14 +4,14 @@ package com.elementalbraines.expressapp.models;
  * Created by Maurel on 25/11/2017.
  */
 
-public class Chat {
+public class ChatModel {
 
     private String user_id;
     private String nombre;
     private String mensaje;
     private String image;
 
-    public Chat( String user_id, String nombre, String mensaje, String image) {
+    public ChatModel(String user_id, String nombre, String mensaje, String image) {
         this.user_id = user_id;
         this.nombre = nombre;
         this.mensaje = mensaje;
