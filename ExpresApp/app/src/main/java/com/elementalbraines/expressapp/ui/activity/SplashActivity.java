@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.elementalbraines.expressapp.R;
+import com.elementalbraines.expressapp.Util;
 import com.stephentuso.welcome.WelcomeHelper;
 import com.tumblr.remember.Remember;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.droidsonroids.gif.AnimationListener;
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,23 +23,36 @@ public class SplashActivity extends AppCompatActivity {
     WelcomeHelper welcomeScreen;
     int REQUEST_WELCOME_SCREEN_RESULT = 1;
 
+    GifDrawable gifDrawable;
+    @BindView(R.id.gifSplash)
+    GifImageView gifSplash;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
         Remember.init(getApplicationContext(), "com.elementalbraines.expressapp");
+        Remember.putString("USER_TOKEN", "123456");
         bundle = savedInstanceState;
+        getSupportActionBar().hide();
+
+        gifDrawable = (GifDrawable) gifSplash.getDrawable();
+        gifDrawable.addAnimationListener(new AnimationListener() {
+            @Override
+            public void onAnimationCompleted(int loopNumber) {
+                onShowWelcome();
+            }
+        });
 
     }
 
-    @OnClick(R.id.btnWelcome)
-    void onShowWelcome(View view){
-        boolean show = Remember.getBoolean("SHOW_WELLCOME", false);
+    void onShowWelcome(){
+        boolean show = Remember.getBoolean(Util.SHOW_WELLCOME, false);
         if(true){
             welcomeScreen = new WelcomeHelper(this, WelcomeAppActivity.class);
             welcomeScreen.forceShow();
-            Remember.putBoolean("SHOW_WELLCOME", true);
+            Remember.putBoolean(Util.SHOW_WELLCOME, true);
         }else{
             showMenuActivity();
         }
@@ -44,7 +61,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void showMenuActivity(){
-        Intent i = new Intent(this, MenuActivity.class);
+        Intent i = new Intent(this, TraductorActivity.class);
         startActivity(i);
     }
 
