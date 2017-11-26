@@ -1,5 +1,6 @@
-home#index
-
-<%= link_to destroy_user_session_path, :method => :delete do %>
-    Cerrar sesion
+<%= content_for :title do %>
+    <%= t('sidebar.home') %>
 <% end %>
+
+
+home#index

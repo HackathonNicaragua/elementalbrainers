@@ -26,11 +26,38 @@ es:
       login:
         title: Inicio de sesión
         button: Iniciar sesión
+    phrases:
+      new_phrase: Agregar frase
+      edit_phrase: Editar frase
   sidebar:
     home: Inicio
+    phrases: Frases
+    sign_out: Cerrar sesión
   activerecord:
     attributes:
       user:
         email: Correo electrónico
         password: Contraseña
         remember_me: Recuérdame
+      phrase:
+        frase: Palabra o frase
+        imagen: Imagen
+        activo: Estado
+        es_frase: Es frase
+    errors:
+      models:
+        phrase:
+          attributes:
+            frase:
+              blank: es requerida para guardar una frase
+            imagen:
+              blank: es requerida para guardar una frase
+  actions:
+    cancel: Cancelar
+    save: Guardar
+  states:
+    active: Activo
+    inactive: Inactivo
+  errors:
+    messages:
+      extension_whitelist_error: 'solo acepta archivos con las siguientes extensiones: %{allowed_types}'

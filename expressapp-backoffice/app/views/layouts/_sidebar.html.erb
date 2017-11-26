@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="purple" data-image="#">
+<div class="sidebar" data-color="green" data-image="#">
   <div class="sidebar-wrapper">
     <div class="logo">
       <%= link_to root_path, :class => 'simple-text' do %>
@@ -10,6 +10,20 @@
         <%= link_to root_path do %>
             <i class="pe-7s-home"></i>
             <p><%= t('sidebar.home') %></p>
+        <% end %>
+      </li>
+
+      <li class="<%= active_controller('phrases') %>">
+        <%= link_to phrases_path do %>
+            <i class="pe-7s-pen"></i>
+            <p><%= t('sidebar.phrases') %></p>
+        <% end %>
+      </li>
+
+      <li class="active-pro">
+        <%= link_to destroy_user_session_path, :method => :delete do %>
+            <i class="pe-7s-delete-user"></i>
+            <p><%= t('sidebar.sign_out') %></p>
         <% end %>
       </li>
     </ul>

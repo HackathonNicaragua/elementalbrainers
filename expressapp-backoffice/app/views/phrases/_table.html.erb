@@ -1,0 +1,19 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th><%= t('activerecord.attributes.phrase.frase') %></th>
+    <th><%= t('activerecord.attributes.phrase.activo') %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% phrases.each do |phrase| %>
+  <tr class="row-clickable" data-url="<%= edit_phrase_path(phrase) %>">
+    <td><%= phrase.id %></td>
+    <td><%= truncate(phrase.frase, length: 35) %></td>
+    <td><%= active_human(phrase.activo) %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

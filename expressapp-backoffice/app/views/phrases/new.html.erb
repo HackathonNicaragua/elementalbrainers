@@ -1,0 +1,20 @@
+<%= content_for :title do %>
+    <%= t('modules.phrases.new_phrase') %>
+<% end %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card">
+        <div class="header">
+          <h4 class="title"><%= t('modules.phrases.new_phrase') %></h4>
+        </div>
+
+        <div class="content">
+          <%= render 'form', phrase: @phrase %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

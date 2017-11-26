@@ -1,0 +1,27 @@
+<%= content_for :title do %>
+    <%= t('sidebar.phrases') %>
+<% end %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card">
+        <div class="header">
+          <div class="col-xs-6">
+            <h4 class="title"><%= t('sidebar.phrases') %></h4>
+          </div>
+          <div class="col-xs-6">
+            <%= button_to new_phrase_path, :class => 'btn btn-default pull-right', :method => :get do %>
+                <%= t('modules.phrases.new_phrase') %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="content table-responsive">
+          <%= render 'table', phrases: @phrases %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

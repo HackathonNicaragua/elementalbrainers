@@ -21,4 +21,22 @@
 //= require template/light-bootstrap-dashboard
 //= require template/demo
 
-document.addEventListener('turbolinks:load', function () {});
+// image preview for carrierwave
+function readURL(input, container_name) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $(container_name).html('<img id="img_prev" src="#" alt="your image" />');
+            $('#img_prev').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+};
+
+document.addEventListener('turbolinks:load', function () {
+    $('.row-clickable').on('click', function() {
+        window.location.href = $(this).data('url');
+    });
+});

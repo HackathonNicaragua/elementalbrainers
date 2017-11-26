@@ -1,0 +1,19 @@
+// Template override and custom functions
+
+// general classes
+.m-r-sm {  margin-right: 10px; }
+
+// image placeholder
+.file-upload__placeholder i {
+  font-size: 25px;
+}
+
+.file-upload__placeholder {
+  border: 1px dashed #dbdbdb;
+  padding: 40px;
+  color: #585859;
+}
+
+.row-clickable:hover {
+  cursor: pointer;
+}

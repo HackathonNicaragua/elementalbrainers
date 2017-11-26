@@ -1,0 +1,22 @@
+# == Schema Information
+#
+# Table name: phrases
+#
+#  id         :integer          not null, primary key
+#  frase      :string
+#  imagen     :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  activo     :boolean
+#  es_frase   :boolean
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  frase: MyString
+  imagen: MyString
+
+two:
+  frase: MyString
+  imagen: MyString
