@@ -1,0 +1,50 @@
+<!-- ///// NAVIGATION BAR /////-->
+<header class="header">
+  <!-- Static navbar-->
+  <div role="navigation" class="navbar navbar-fixed-top primary-navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span></button>
+        <a href="<%= root_path %>" class="navbar-brand">
+          <%= image_tag 'logo-main.png', :alt => 'Boom!', :title => 'Boom!', :class => 'logo-img img-responsive' %>
+        </a>
+      </div>
+      <div class="navbar-collapse collapse nav-right">
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="search-form-link" data-toggle="modal" data-target="#searchForm"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+        </ul>
+        <!-- Search Modal -->
+        <div class="modal fade" id="searchForm" tabindex="-1" role="dialog" aria-labelledby="searchFormModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Search Form</h4>
+              </div>
+              <div class="modal-body">
+                <form role="search" method="get" class="search-form" action="#">
+                  <div class="input-group input-group-hg">
+                    <input type="text" class="form-control input-hg" name="s" value="" placeholder="Search away...">
+                    <span class="input-group-btn">
+		                            <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+		                        </span>
+                  </div>
+                  <input type="hidden" name="post_type" value="post">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul id="menu-main-menu" class="nav navbar-nav navbar-right"><li id="menu-item-37" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-37"><a href="#section-features">Features</a></li>
+          <li id="menu-item-38" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-38"><a href="#section-gallery">Gallery</a></li>
+          <li id="menu-item-39" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-39"><a href="#section-pricing">Pricing</a></li>
+          <li id="menu-item-40" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-40"><a href="#section-testimonials">Testimonials</a></li>
+          <li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="blog/index.html">Blog</a></li>
+          <li id="menu-item-41" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41"><a href="#section-faq">FAQ/Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

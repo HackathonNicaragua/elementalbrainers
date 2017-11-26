@@ -1,0 +1,11 @@
+#jp-relatedposts .jp-relatedposts-items-visual h4.jp-relatedposts-post-title{
+    margin-top:15px!important;
+}
+#jp-relatedposts .jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-title a{
+    font-weight:700!important;
+    font-size:15px!important;
+}
+#jp-relatedposts .jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-context{
+    color: #34495e!important;
+    opacity:1!important;
+}
