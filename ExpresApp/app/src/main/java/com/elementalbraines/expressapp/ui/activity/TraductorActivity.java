@@ -1,6 +1,8 @@
 package com.elementalbraines.expressapp.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
@@ -9,13 +11,22 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.elementalbraines.expressapp.R;
+import com.elementalbraines.expressapp.Util;
+import com.tumblr.remember.Remember;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -42,8 +53,15 @@ public class TraductorActivity extends AppCompatActivity {
     GifImageView gifInterprete;
     @BindView(R.id.cntInterprete)
     RelativeLayout cntInterprete;
+    @BindView(R.id.txvTitleToolbart)
+    TextView txvTitToolbart;
+    @BindView(R.id.edtMensaje)
+    EditText edtMensaje;
+
+
 
     Map<String, String> lista;
+    TextToSpeech t1;
 
 
     @Override
@@ -52,7 +70,12 @@ public class TraductorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_traductor);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_logo);
+        Remember.init(getApplicationContext(), getPackageName());
         setSupportActionBar(toolbar);
+
+        Typeface font = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Light.ttf");
+        txvTitToolbart.setTypeface(font);
 
         lista = new HashMap<String, String>();
         lista.put("hola", "hola");
@@ -75,7 +98,43 @@ public class TraductorActivity extends AppCompatActivity {
 
         gifDrawable = (GifDrawable) gifInterprete.getDrawable();
 
+        t1 = textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    textToSpeech.setSpeechRate(1);
+                    textToSpeech.setLanguage(Locale.getDefault());
+                }
+            }
+        });
+    }
 
+    @Override
+    public boolean  onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_principal, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menu_chat:
+                showChat();
+                break;
+        }
+        return true;
+    }
+
+    public void showChat(){
+        if(!Remember.getString(Util.USER_ID,"").isEmpty()){
+            Intent i = new Intent(getApplicationContext(), ChatActivity.class);
+            startActivity(i);
+        }else{
+            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+        }
     }
 
     @OnClick(R.id.fabMicrofono)
@@ -86,16 +145,20 @@ public class TraductorActivity extends AppCompatActivity {
         i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Di algo");
         startActivityForResult(i, REQUEST_MICROFONO);
 
-        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    textToSpeech.setSpeechRate(1);
-                    textToSpeech.setLanguage(Locale.getDefault());
-                }
-            }
-        });
 
+
+    }
+
+    @OnClick(R.id.imvReproducir)
+    void reproducirTexto(View view){
+        String mensaje = edtMensaje.getText().toString();
+        t1.speak(mensaje.toString(), TextToSpeech.QUEUE_FLUSH, null);
+        edtMensaje.setText("");
+        View view2 = this.getCurrentFocus();
+        if (view2 != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     @Override
@@ -154,6 +217,8 @@ public class TraductorActivity extends AppCompatActivity {
             GifImageView gifImageView = new GifImageView(getApplicationContext());
             String animation = frases.get(count).toLowerCase();
             gifImageView.setImageResource(getResources().getIdentifier(animation, "drawable", getPackageName()));
+            ViewGroup.LayoutParams params =  gifImageView.getLayoutParams();
+
             final GifDrawable gifDrawable = (GifDrawable) gifImageView.getDrawable();
             if(gifDrawable != null) {
                 gifDrawable.addAnimationListener(new AnimationListener() {

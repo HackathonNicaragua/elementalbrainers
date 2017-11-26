@@ -45,11 +45,13 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
 
+        Util.logout();
+
     }
 
     void onShowWelcome(){
         boolean show = Remember.getBoolean(Util.SHOW_WELLCOME, false);
-        if(true){
+        if(!show){
             welcomeScreen = new WelcomeHelper(this, WelcomeAppActivity.class);
             welcomeScreen.forceShow();
             Remember.putBoolean(Util.SHOW_WELLCOME, true);

@@ -2,9 +2,9 @@
 <resources>
     <color name="colorPrimary">#03C698</color>
     <color name="colorPrimaryDark">#089670</color>
-    <color name="colorAccent">#C11744</color>
+    <color name="colorAccent">#F03761</color>
 
-    <color name="rosa_claro">#F03761</color>
+    <color name="rosa_claro">#C11744</color>
     <color name="celeste_claro">#29abe2</color>
     <color name="celeste_oscuro">#2093BC</color>
 </resources>

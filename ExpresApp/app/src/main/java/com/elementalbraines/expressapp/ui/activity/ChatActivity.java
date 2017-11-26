@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
@@ -15,13 +16,20 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.elementalbraines.expressapp.R;
 import com.elementalbraines.expressapp.Util;
 import com.elementalbraines.expressapp.models.Chat;
 import com.elementalbraines.expressapp.ui.adapters.ChatAdapter;
+import com.facebook.login.Login;
+import com.facebook.login.LoginManager;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +48,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -50,6 +59,14 @@ public class ChatActivity extends AppCompatActivity {
 
     ChatAdapter adapter;
     DatabaseReference dbChat;
+    @BindView(R.id.txvTitToolbart)
+    TextView txvTitToolbart;
+
+    /*@BindView(R.id.imvReproducir)
+    ImageButton imvReproducir;*/
+
+    @BindView(R.id.edtMensaje)
+    EditText edtMensaje;
 
 
     @Override
@@ -58,11 +75,14 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Chat");
+        toolbar.setNavigationIcon(R.drawable.ic_logo);
 
         Remember.init(getApplicationContext(), "com.elementalbraines.expressapp");
 
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+
+        validatePermission();
 
         dbChat = FirebaseDatabase.getInstance().getReference()
                 .child("salas").child("sala1");
@@ -96,9 +116,38 @@ public class ChatActivity extends AppCompatActivity {
                 });
             }
         });
+
+
         loadMensaje();
 
+        Typeface font = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Light.ttf");
+        txvTitToolbart.setTypeface(font);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_principal, menu);
+        return true;
+    }
+
+    public void validatePermission(){
+        if(Remember.getString(Util.USER_ID, "").equals("")){
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menu_traductor:
+                Intent i = new Intent(this, TraductorActivity.class);
+                startActivity(i);
+                break;
+        }
+        return true;
     }
 
     @Override
@@ -110,12 +159,8 @@ public class ChatActivity extends AppCompatActivity {
 
             if(resultCode == RESULT_OK){
                 ArrayList<String> values = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                String user_id = Remember.getString(Util.USER_ID,"Anonymo");
-                String user_name = Remember.getString(Util.USER_NAME,"Anonymo");
-                String user_picture = Remember.getString(Util.USER_PICTURE,"Anonymo");
 
-                Chat chat = new Chat(user_id, user_name, values.get(0), user_picture);
-                dbChat.child(java.util.UUID.randomUUID().toString()).setValue(chat);
+                sendMensaje(values.get(0));
                 //Toast.makeText(getApplicationContext(), values.get(0), Toast.LENGTH_LONG).show();
             }else{
                 Snackbar.make(rcvChat, "Petición cancelada", Snackbar.LENGTH_LONG).show();
@@ -126,6 +171,22 @@ public class ChatActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    @OnClick(R.id.imvSend)
+    void OnImvSend(View view){
+
+        sendMensaje(edtMensaje.getText().toString());
+        edtMensaje.setText("");
+    }
+
+    public void sendMensaje(String mensaje){
+        String user_id = Remember.getString(Util.USER_ID,"Anonymo");
+        String user_name = Remember.getString(Util.USER_NAME,"Anonymo");
+        String user_picture = Remember.getString(Util.USER_PICTURE,"Anonymo");
+
+        Chat chat = new Chat(user_id, user_name, mensaje, user_picture);
+        dbChat.child(java.util.UUID.randomUUID().toString()).setValue(chat);
     }
 
     public void loadMensaje(){
